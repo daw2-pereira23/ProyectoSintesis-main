@@ -1,8 +1,5 @@
-import { login } from './login'
-import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss';
 
-import 'sweetalert2/src/sweetalert2.scss'
-import { interfaz } from './interfaz'
 export const home = {
   template: `<div class="col-12 background-radial-gradient overflow-hidden">
     <style>
@@ -107,29 +104,33 @@ export const home = {
 `,
   script: () => {
 
-    var urlEndpoint = 'localhost:8081/api/usuarios'
+    var urlEndpoint = 'http://localhost:8081/api/usuarios/create'
     
     document.querySelector('#registro').addEventListener('click', (event) => {
       event.preventDefault()
-      alert("adasa")
-      createUser()
+
+      let password = document.querySelector("#passwordRegistro").value
+      let email = document.querySelector("#emailRegistro").value
+      let name = document.querySelector("#nombreRegistro").value
+      let apellidos = document.querySelector("#apellidoRegistro").value
+  
+      let data= 
+      {
+        name: name,
+        email: email,
+        password: password,
+      }
+      console.log(data);
+      fetch( urlEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify( data )
+      })
+      .then( resp => resp.json() )
+      .then( data => console.log( "Datos enviados: ", data ))
+      .catch( console.log );
     })
-
-    const createUser = () => {
-      let usuario= {
-        "password": document.querySelector("#passwordRegistro").value,
-        "email": document.querySelector("#emailRegistro").value,
-        "name": document.querySelector("#nombreRegistro").value,
-        "apellidos": document.querySelector("#apellidoRegistro").value
-       }
-
-      console.log("Has enviado: ", usuario)
-
-      
-      return (`${urlEndpoint}/create`, usuario)
-   
-    }
-
   }
-
 }
+
+   

@@ -75,13 +75,13 @@ export const login = {
     
     document.querySelector('#butonLogin').addEventListener('click', (e) => {
       e.preventDefault()
-      var urlEndpoint = 'localhost:8081/api/usuarios'
+      
       let usuarioLogin = {
          "correo": document.querySelector('#correoLogin').value,
          "password": document.querySelector('#contrasenaLogin').value
       }
       
-      return (`${urlEndpoint}/`)
+      
 
       console.log("El correo con el que te intestas logear es:  " + correo + " " + contrasena);
       document.querySelector('main').innerHTML = interfaz.template
@@ -89,6 +89,7 @@ export const login = {
     })
     document.querySelector('#noTengoCuenta').addEventListener("click", ()=>{
       document.querySelector('main').innerHTML = home.template
+      home.script()
     })
   }
 
