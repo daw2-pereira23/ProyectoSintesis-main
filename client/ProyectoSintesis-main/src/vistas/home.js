@@ -108,7 +108,7 @@ export const home = {
     
     document.querySelector('#registro').addEventListener('click', (event) => {
       event.preventDefault()
-
+      
       let password = document.querySelector("#passwordRegistro").value
       let email = document.querySelector("#emailRegistro").value
       let name = document.querySelector("#nombreRegistro").value

@@ -1,8 +1,10 @@
 const { response, request } = require("express");
 const Usuario = require("../models/usuario.js");
 const { genSaltSync, hashSync } = require("bcryptjs")
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
-const usuariosGet = async( req = request, res = repsonse ) => {
+const usuariosGet = async( req = request, res = response ) => {
 
     const query = { state: true }
 
@@ -55,10 +57,36 @@ const usuariosDelete = async ( req, res ) => {
     res.json({usuario})
 }
 
+const login = async ( req, res ) => {
+
+    const { name, password  } = req.body;
+    try {
+        const user = await Usuario.findOne({ name });
+       
+        if (!user) {
+            return res.status(401).json({ message: 'Usuario incorrecto' });
+        }
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Pass incorrecta' });
+        }
+        const token = jwt.sign({ userId: user._id }, 'holiwis');
+        
+        const rol = user.role
+        const email = user.email
+        const id = user.id
+        res.json({ "Usuario logueado y rol: " : user, token, rol, email, id});
+        console.log( )
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al iniciar sesión');
+    }
+}
 
 module.exports = {
     usuariosGet,
     usuariosDelete,
     usuariosPost,
-    usuariosPut
+    usuariosPut,
+    login
 }

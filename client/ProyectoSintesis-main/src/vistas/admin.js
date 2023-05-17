@@ -98,6 +98,7 @@ export const admin = {
     </div>
     `,
   script: () => {
+    
     document.querySelector('#editar').addEventListener('click', () => {
       
       document.querySelector('#guardar').addEventListener('click', () => {

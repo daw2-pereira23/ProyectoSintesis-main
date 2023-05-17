@@ -1,3 +1,5 @@
+import { footer } from '../componentes/footer'
+import { header } from '../componentes/header'
 import { home } from './home'
 import { interfaz } from './interfaz'
 
@@ -53,7 +55,7 @@ export const login = {
                <br>
                 <!-- Register buttons -->
                 <div class="text-center">
-                 <button id="butonLogin" class="btn btn-success">Iniciar Sesion</button> 
+                 <button id="buttonLogin" class="btn btn-success">Iniciar Sesion</button> 
                  
                 </div>
                 <div class="text-center mt-2">
@@ -73,20 +75,44 @@ export const login = {
     `,
   script: () => {
     
-    document.querySelector('#butonLogin').addEventListener('click', (e) => {
+    document.querySelector('#buttonLogin').addEventListener('click', (e) => {
       e.preventDefault()
-      
-      let usuarioLogin = {
-         "correo": document.querySelector('#correoLogin').value,
-         "password": document.querySelector('#contrasenaLogin').value
+      let name = document.querySelector('#correoLogin').value
+      let password = document.querySelector('#contrasenaLogin').value
+
+      let datosIntroducidos = {
+         'name': name,
+         'password': password
       }
       
+
       
 
-      console.log("El correo con el que te intestas logear es:  " + correo + " " + contrasena);
-      document.querySelector('main').innerHTML = interfaz.template
 
+      fetch( "http://localhost:8081/api/usuarios/login", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify( datosIntroducidos )
+      })
+      .then( resp => resp.json())
+      .then( data => {
+        const rol = data.rol
+        const email = data.email
+        const id = data.id
+
+
+        footer.script(rol, datosIntroducidos, email, id)
+      })
+      .catch( console.log );
+
+
+
+
+      
+      document.querySelector('main').innerHTML = interfaz.template
+      
     })
+  
     document.querySelector('#noTengoCuenta').addEventListener("click", ()=>{
       document.querySelector('main').innerHTML = home.template
       home.script()
@@ -94,3 +120,4 @@ export const login = {
   }
 
 }
+
