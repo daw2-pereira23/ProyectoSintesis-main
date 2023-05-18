@@ -16,6 +16,18 @@ const usuariosGet = async( req = request, res = response ) => {
     })
 }
 
+const usuariosGetDeletedUsers = async( req = request, res = response ) => {
+
+    const query = { state: false }
+
+    const [ usuarios ] = await Promise.all([
+        Usuario.find( query )])
+
+    res.json({
+        usuarios 
+    })
+}
+
 const usuariosPost = async ( req, res ) => {
 
     const { name, email, password, rol } = req.body
@@ -33,19 +45,17 @@ const usuariosPost = async ( req, res ) => {
 
 const usuariosPut = async ( req, res ) => {
     
-    const { id } = req.params.id
-    const { password, google, email, ...resto } = req.body
+    const { id } = req.params
+    const { _id, ...resto } = req.body
 
-    if( password ) {
-        //Encriptar la contraseña
+    if( resto.password ) {
         const salt = genSaltSync()
-        resto.password = hashSync( password, salt )
+        resto.password = hashSync( resto.password, salt )
     }
 
     const usuario = await Usuario.findByIdAndUpdate( id, resto )
 
     res.json(usuario)
-
 } 
 
 const usuariosDelete = async ( req, res ) => {
@@ -59,24 +69,28 @@ const usuariosDelete = async ( req, res ) => {
 
 const login = async ( req, res ) => {
 
-    const { name, password  } = req.body;
+    const { email, password  } = req.body;
     try {
-        const user = await Usuario.findOne({ name });
-       
+        const user = await Usuario.findOne({ email });
+        
         if (!user) {
-            return res.status(401).json({ message: 'Usuario incorrecto' });
+            return res.status(401).json({ 
+                message : 'Usuario o contraseña incorrectos',
+            });    
         }
+        
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(401).json({ message: 'Pass incorrecta' });
-        }
+            return res.status(401).json({ 
+                message : 'Usuario o contraseña incorrectos'
+            });            }
+
         const token = jwt.sign({ userId: user._id }, 'holiwis');
         
         const rol = user.role
-        const email = user.email
+        const name = user.name
         const id = user.id
-        res.json({ "Usuario logueado y rol: " : user, token, rol, email, id});
-        console.log( )
+        res.json({ "Usuario logueado y rol: " : user, token, rol, name, id});
     } catch (error) {
         console.error(error);
         res.status(500).send('Error al iniciar sesión');
@@ -88,5 +102,6 @@ module.exports = {
     usuariosDelete,
     usuariosPost,
     usuariosPut,
+    usuariosGetDeletedUsers,
     login
 }

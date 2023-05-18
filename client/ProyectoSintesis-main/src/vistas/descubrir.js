@@ -33,7 +33,7 @@ export const descubrir = {
         <div class="container col-12 d-flex justify-content-center col-sm-8">
             <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
             Descubre tu discoteca <br/>
-            <span style="color: hsl(218, 81%, 75%)">Salimos <strong>Tonight ?</strong></span>
+            <span style="color: hsl(218, 81%, 75%)">¿Salimos <strong>Tonight?</strong></span>
             <o/h1>
         </div>
        <div class="d-flex justify-content-center align-items-center ">

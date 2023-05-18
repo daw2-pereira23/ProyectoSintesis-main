@@ -27,10 +27,10 @@ export const footer = {
         </div>
     </nav>
     `,
-  script: (rol, usuario, email, id) => {
+  script: (rol, usuario, email, id, name) => {
     
     console.log(rol);
-    console.log(usuario)
+    console.log(name)
     console.log(email)
     console.log(id)
     const primerIcono = ` <i class="fa-solid fa-magnifying-glass logos" id="descubrir"></i>`
@@ -69,7 +69,7 @@ export const footer = {
           login.script()
         }else{
           document.querySelector('main').innerHTML = editarPerfil.template
-          editarPerfil.script(usuario, email, id)
+          editarPerfil.script(usuario, id, name)
         }
         
       })

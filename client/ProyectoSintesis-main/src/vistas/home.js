@@ -36,7 +36,7 @@ export const home = {
           <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
             <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
               Tu App para salir de fiesta <br />
-              <span style="color: hsl(218, 81%, 75%)">Salimos <strong>Tonight ?</strong></span>
+              <span style="color: hsl(218, 81%, 75%)">¿Salimos <strong>Tonight?</strong></span>
             </h1>
             <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
               
@@ -50,6 +50,11 @@ export const home = {
             <div class="card bg-glass">
               <div class="card-body px-4 py-5 px-md-5">
                 <form id="formulario">
+                  <div class="row">
+                    <h1 class="text-center">REGISTRO</h1>
+                  </div>
+                  <hr />
+                  <br />
                   <!-- 2 column grid layout with text inputs for the first and last names -->
                   <div class="row">
                     <div class="col-md-6 mb-4">
@@ -78,20 +83,8 @@ export const home = {
                     <label class="form-label" for="form3Example4" >Contraseña</label>
                   </div>
     
-                  <!-- Checkbox -->
-                  <div class="form-check d-flex justify-content-center mb-4">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                    <label class="form-check-label" for="form2Example33">
-                      No recuerdo mi contraseña
-                    </label>
-                  </div>
-    
-                  <!-- Submit button -->
-                 
-    
                   <!-- Register buttons -->
-                  <div class="text-center">
-                   
+                  <div class="text-center d-flex justify-content-end">
                     <button class="btn btn-primary" id="registro">Registrarme</button> 
                   </div>
                 </form>
@@ -100,8 +93,8 @@ export const home = {
           </div>
         </div>
       </div>
-</div>
-`,
+    </div>
+    `,
   script: () => {
 
     var urlEndpoint = 'http://localhost:8081/api/usuarios/create'

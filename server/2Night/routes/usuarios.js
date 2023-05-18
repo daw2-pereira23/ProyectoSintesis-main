@@ -1,10 +1,12 @@
 const { Router } = require("express");
-const { usuariosGet, usuariosPost, usuariosPut, usuariosDelete, login } = require("../controllers/usuarios");
+const { usuariosGet, usuariosGetDeletedUsers, usuariosPost, usuariosPut, usuariosDelete, login } = require("../controllers/usuarios");
 
 
 const router = Router()
 
 router.get('/', usuariosGet)
+
+router.get('/deletedUsers', usuariosGetDeletedUsers)
 
 router.post('/create', usuariosPost)
 

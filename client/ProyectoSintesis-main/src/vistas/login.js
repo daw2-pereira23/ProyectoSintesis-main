@@ -12,7 +12,7 @@ export const login = {
         <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
           <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
             Tu App para salir de fiesta <br />
-            <span style="color: hsl(218, 81%, 75%)">Salimos <strong>Tonight ?</strong></span>
+            <span style="color: hsl(218, 81%, 75%)">¿Salimos <strong>Tonight?</strong></span>
           </h1>
           <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
             
@@ -28,26 +28,29 @@ export const login = {
               <form>
                 <!-- 2 column grid layout with text inputs for the first and last names -->
                 <div class="row">
-                  <h1>INICIO DE SESION </h1>
+                  <h1 class="text-center">INICIAR SESIÓN </h1>
                 </div>
-  
+                <hr />
+                <br />
                 <!-- Email input -->
                 <div class="form-outline mb-4">
+                  <label class="form-label d-flex" for="form3Example3">Correo Electronico</label>
                   <input type="email" class="form-control" id="correoLogin"/>
-                  <label class="form-label" for="form3Example3">Correo Electronico</label>
                 </div>
+                <div id="emailErrors"></div>
+
   
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                  <input type="password" class="form-control" id="contrasenaLogin"/>
-                  <label class="form-label" for="form3Example4">Contraseña</label>
+                  <label class="form-label d-flex" for="form3Example4">Contraseña</label>
+                  <input type="password" class="form-control" id="passLogin"/>
                 </div>
-  
+                <div id="passErrors"></div>
                 <!-- Checkbox -->
                 <div class="form-check d-flex justify-content-center mb-4">
                   <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
                   <label class="form-check-label" for="form2Example33">
-                    No recuerdo mi contraseña
+                    Recordar mi contraseña
                   </label>
                 </div>
   
@@ -55,11 +58,8 @@ export const login = {
                <br>
                 <!-- Register buttons -->
                 <div class="text-center">
-                 <button id="buttonLogin" class="btn btn-success">Iniciar Sesion</button> 
-                 
-                </div>
-                <div class="text-center mt-2">
-                  <button id="noTengoCuenta" class="btn btn-primary">No tengo cuenta registrame</button>
+                  <button id="buttonLogin" class="btn btn-success me-4">Iniciar Sesion</button> 
+                  <button id="noTengoCuenta" class="btn btn-primary">No tengo cuenta</button>
                 </div>
               </form>
               <br>
@@ -71,53 +71,50 @@ export const login = {
       </div>
     </div>
     
-</div>
-    `,
-  script: () => {
+</div>`,
+
+script: () => {
     
-    document.querySelector('#buttonLogin').addEventListener('click', (e) => {
-      e.preventDefault()
-      let name = document.querySelector('#correoLogin').value
-      let password = document.querySelector('#contrasenaLogin').value
+  document.querySelector('#buttonLogin').addEventListener('click', async (e) => {
+    e.preventDefault()
+    let email = document.querySelector('#correoLogin').value
+    let password = document.querySelector('#passLogin').value
 
-      let datosIntroducidos = {
-         'name': name,
-         'password': password
-      }
-      
+    let datosIntroducidos = {
+       'email': email,
+       'password': password
+    }
+    
+    var result = await fetch( "http://localhost:8081/api/usuarios/login", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify( datosIntroducidos )
+    })
+    .then( resp => resp.json())
+    .then( data => {
+      const rol = data.rol
+      const email = data.email
+      const id = data.id
+      const name = data.name
 
-      
+      footer.script(rol, datosIntroducidos, email, id, name)
+    })
+    .catch(error => {
+      console.error(error.message)
+    });
 
-
-      fetch( "http://localhost:8081/api/usuarios/login", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( datosIntroducidos )
-      })
-      .then( resp => resp.json())
-      .then( data => {
-        const rol = data.rol
-        const email = data.email
-        const id = data.id
-
-
-        footer.script(rol, datosIntroducidos, email, id)
-      })
-      .catch( console.log );
-
-
-
-
-      
+    if(result) {
       document.querySelector('main').innerHTML = interfaz.template
-      
-    })
-  
-    document.querySelector('#noTengoCuenta').addEventListener("click", ()=>{
-      document.querySelector('main').innerHTML = home.template
-      home.script()
-    })
-  }
+    }
+    
+  })
+
+  document.querySelector('#noTengoCuenta').addEventListener("click", ()=>{
+    document.querySelector('main').innerHTML = home.template
+    home.script()
+  })
+}
 
 }
+
 

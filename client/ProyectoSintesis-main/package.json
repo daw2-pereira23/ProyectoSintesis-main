@@ -22,7 +22,7 @@
     "leaflet": "^1.9.3",
     "maplibre-gl": "^2.4.0",
     "particlesjs": "^2.2.3",
-    "sweetalert2": "^11.7.3"
+    "sweetalert2": "^11.7.5"
   },
   "eslintConfig": {
     "extends": [
