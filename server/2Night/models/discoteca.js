@@ -19,6 +19,16 @@ const DiscotecaSchema = Schema({
     unique: true
   },
 
+  latitude: {
+    type: Number,
+    required: [true, 'La latitud es necesaria']
+  },
+
+  longitude: {
+    type: Number,
+    required: [true, 'La longitud es necesaria']
+  },
+
   tags: {
     type: String,
     default: " "

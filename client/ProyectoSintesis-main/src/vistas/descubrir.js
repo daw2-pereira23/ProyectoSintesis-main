@@ -48,10 +48,30 @@ export const descubrir = {
 
     }).addTo(map)
 
-    const titus = L.popup()
-      .setLatLng([41.458102, 2.263098])
-      .setContent('Titus Carpa.')
-      .addTo(map)
+    fetch('http://localhost:8081/api/discotecas', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error: ' + response.status);
+      }
+      return response.json(); 
+    })
+    .then(data => {
+      const dataArray = Object.values(data);
+      for(let i = 0; i < dataArray.length; i++) {
+        L.popup()
+        .setLatLng([data.discotecas[i].latitude, data.discotecas[i].longitude])
+        .setContent(data.discotecas[i].title)
+        .addTo(map)
+      }
+      
+    })
+    .catch(error => {
+
+      console.error(error);
+    });
 
     const cocoa = L.popup()
       .setLatLng([41.532747900, 2.429275100])
