@@ -25,11 +25,10 @@ export const footer = {
         </div>
     </nav>
     `,
-  script: (rol, usuario, email, id, name) => {
+  script: (rol, usuario, id, name) => {
     
     console.log(rol);
     console.log(name)
-    console.log(email)
     console.log(id)
     const primerIcono = ` <i class="fa-solid fa-magnifying-glass logos" id="descubrir"></i>`
     const segundoIcono = ` <i class="fa-regular fa-user" id="user"></i>`

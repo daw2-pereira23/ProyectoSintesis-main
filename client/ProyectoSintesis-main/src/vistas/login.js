@@ -101,6 +101,10 @@ script: () => {
     .catch(error => {
       console.error(error.message)
     });
+
+    if(result) {
+      document.querySelector('main').innerHTML = interfaz.template
+    }
     
   })
 

@@ -1,4 +1,6 @@
-import 'sweetalert2/src/sweetalert2.scss';
+import { footer } from '../componentes/footer'
+import { interfaz } from './interfaz'
+import Swal from 'sweetalert2';
 
 export const home = {
   template: `<div class="col-12 background-radial-gradient overflow-hidden">
@@ -107,20 +109,35 @@ export const home = {
       let name = document.querySelector("#nombreRegistro").value
       let apellidos = document.querySelector("#apellidoRegistro").value
   
-      let data= 
+      let datos= 
       {
         name: name,
         email: email,
         password: password,
       }
-      console.log(data);
+
       fetch( urlEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( data )
+        body: JSON.stringify( datos )
       })
       .then( resp => resp.json() )
-      .then( data => console.log( "Datos enviados: ", data ))
+      .then( data => {
+        if (undefined == data) {
+          console.log("Algo ha malido sal");
+        } else {
+          // let rol = 'USER_ROLE'
+          // footer.script(rol, datos.name, id, datos.email)
+
+          Swal.fire(
+            'Usuario creado',
+            `El usuario ${name} ha sido creado con éxito`,
+            'success'
+          ).then(() => {
+            document.querySelector('main').innerHTML = interfaz.template
+          })
+        }
+      })
       .catch( console.log );
     })
   }

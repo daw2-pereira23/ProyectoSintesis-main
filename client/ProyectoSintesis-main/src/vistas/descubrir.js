@@ -42,7 +42,7 @@ export const descubrir = {
     </div>`,
   //* Mapa
   script: async () => {
-    const map = L.map('map').setView([51.505, -0.09], 13)
+    const map = new L.map('map').setView([41.454161110998264, 2.243896936861353], 10)
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19
 
@@ -60,28 +60,30 @@ export const descubrir = {
     })
     .then(data => {
       const dataArray = Object.values(data);
-      for(let i = 0; i < dataArray.length; i++) {
-        L.popup()
+      for(let i = 0; i < dataArray[0].length; i++) {
+        const popup = new L.popup()
         .setLatLng([data.discotecas[i].latitude, data.discotecas[i].longitude])
-        .setContent(data.discotecas[i].title)
+        .setContent(`
+          <h5>${data.discotecas[i].name}</h5>
+          <div>
+            <br />
+            <p>${data.discotecas[i].description}</p>
+            <img src="${data.discotecas[i].img}" style="width: 10rem;"></img>
+            <br />
+            <p>Información de la sala: <a href="${data.discotecas[i].email}">${data.discotecas[i].email}</a></p>
+            <hr />
+            <p>Tags: ${data.discotecas[i].tags}</p>
+          </div>
+        `)
+
+        new L.Marker([data.discotecas[i].latitude, data.discotecas[i].longitude])
+        .bindPopup(popup)
+        .openPopup()
         .addTo(map)
       }
-      
     })
     .catch(error => {
-
       console.error(error);
     });
-
-    const cocoa = L.popup()
-      .setLatLng([41.532747900, 2.429275100])
-      .setContent('Cocoa Mataro.')
-      .addTo(map)
-
-    const Waka = L.popup()
-      .setLatLng([41.536002610, 2.109598480])
-      .setContent('Waka Sabadell.')
-      .addTo(map)
   }
-
 }

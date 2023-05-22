@@ -15,8 +15,8 @@ const discotecasGet = async( req = request, res = response ) => {
 
 const discotecasPost = async ( req, res ) => {
 
-    const { name, email, address, tags, longitude, latitude } = req.body
-    const discoteca = new Discoteca({ name, email, address, tags, longitude, latitude })
+    const { name, email, description, img, address, tags, longitude, latitude } = req.body
+    const discoteca = new Discoteca({ name, email, description, img, address, tags, longitude, latitude })
 
     //Guarda en DB
     await discoteca.save()

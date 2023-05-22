@@ -29,14 +29,14 @@ export const editarPerfil = {
       </div>
   </div>
 </div>`,
-  script: async(datosIntroducidos, id, name) => {
+  script: (datosIntroducidos, id, name) => {
 
     document.querySelector('#name').innerHTML = name
     document.querySelector('#nombre3').value = name
     document.querySelector('#password3').value = datosIntroducidos.password
     document.querySelector("#email").value = datosIntroducidos.email      
 
-    document.querySelector("#guardarCambiosEditar").addEventListener("click", ()=>{
+    document.querySelector("#guardarCambiosEditar").addEventListener("click", async()=>{
       var newName = document.querySelector("#nombre3").value
       var newPass = document.querySelector("#password3").value
       var newEmail = document.querySelector("#email").value
@@ -49,25 +49,26 @@ export const editarPerfil = {
 
       console.log("test" + updateUsuario, id)
         
-      var result = fetch( `http://localhost:8081/api/usuarios/update/${id}`, {
+      var result = await fetch( `http://localhost:8081/api/usuarios/update/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify( updateUsuario )
         })
         .then( resp => resp.json())
-        .then( data => console.log( "Datos enviados: ", data ))
-        .catch( console.log )
-
-      if(result) {
-        Swal.fire(
-          'Usuario actualizado',
-          `El usuario ${name} ha sido actualizado con éxito`,
-          'success'
-        ).then( () => {
-          location.reload();
-          document.querySelector('main').innerHTML = interfaz.template
+        .then( data => {
+          if(undefined == data) {
+            console.log("algo ha fallado");
+          } else {
+            Swal.fire(
+              'Usuario actualizado',
+              `El usuario ${name} ha sido actualizado con éxito`,
+              'success'
+            ).then( () => {
+              document.querySelector('main').innerHTML = interfaz.template
+            })
+          }
         })
-      }
+        .catch( console.log )
     })      
 
     document.querySelector("#cancelarCambios").addEventListener("click", ()=>{
