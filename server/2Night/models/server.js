@@ -9,7 +9,8 @@ class Server {
 
     this.paths = {
       usuarios: '/api/usuarios' ,
-      discotecas: '/api/discotecas'
+      discotecas: '/api/discotecas',
+      noticias: '/api/noticias'
     }
 
     this.conectarDB()
@@ -18,7 +19,6 @@ class Server {
 
     this.routes()
   }
-
 
   async conectarDB() {
 
@@ -36,8 +36,9 @@ class Server {
 
   routes() {
 
-    this.app.use( this.paths.usuarios, require('../routes/usuarios') )
-    this.app.use( this.paths.discotecas, require('../routes/discotecas') )
+    this.app.use( this.paths.usuarios, require('../routes/usuarios'))
+    this.app.use( this.paths.discotecas, require('../routes/discotecas'))
+    this.app.use( this.paths.noticias, require('../routes/noticias'))
 
   }
 
@@ -51,7 +52,4 @@ class Server {
  
 }
 
-
 module.exports = Server
-
-

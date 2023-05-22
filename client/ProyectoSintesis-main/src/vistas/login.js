@@ -1,7 +1,7 @@
 import { footer } from '../componentes/footer'
-import { header } from '../componentes/header'
 import { home } from './home'
 import { interfaz } from './interfaz'
+import cookie from 'js-cookie'
 
 export const login = {
   template: `
@@ -77,14 +77,14 @@ script: () => {
     
   document.querySelector('#buttonLogin').addEventListener('click', async (e) => {
     e.preventDefault()
-    let email = document.querySelector('#correoLogin').value
-    let password = document.querySelector('#passLogin').value
+    var email = document.querySelector('#correoLogin').value
+    var password = document.querySelector('#passLogin').value
 
     let datosIntroducidos = {
        'email': email,
        'password': password
-    }
-    
+      }
+
     var result = await fetch( "http://localhost:8081/api/usuarios/login", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -93,19 +93,14 @@ script: () => {
     .then( resp => resp.json())
     .then( data => {
       const rol = data.rol
-      const email = data.email
       const id = data.id
       const name = data.name
-
-      footer.script(rol, datosIntroducidos, email, id, name)
+            
+      footer.script(rol, datosIntroducidos, id, name, email)
     })
     .catch(error => {
       console.error(error.message)
     });
-
-    if(result) {
-      document.querySelector('main').innerHTML = interfaz.template
-    }
     
   })
 

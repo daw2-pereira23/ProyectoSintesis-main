@@ -1,7 +1,3 @@
-
-import { admin } from '../vistas/admin'
-import { home } from '../vistas/home'
-
 export const header = {
   template: `
     <nav class="navbar navbar-expand-lg p-3 ">

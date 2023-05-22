@@ -3,9 +3,7 @@ import { cupones } from '../vistas/cupones'
 import { descubrir } from '../vistas/descubrir'
 import { editarPerfil } from '../vistas/editarPerfil'
 import { login } from '../vistas/login'
-
 import { proximosEventos } from '../vistas/proximosEventos'
-import { user } from '../vistas/user'
 
 export const footer = {
   template: `

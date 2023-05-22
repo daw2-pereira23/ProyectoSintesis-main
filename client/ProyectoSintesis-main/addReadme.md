@@ -1,4 +1,4 @@
-# Proyecti 12
+<!-- # Proyecti 12
 
 ## Avanzando en el html
 
@@ -18,4 +18,4 @@ Metodo
 
 ###Recursos
 ```npm install bootsrap```
-```
+``` -->

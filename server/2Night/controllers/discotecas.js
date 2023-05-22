@@ -27,7 +27,7 @@ const discotecasPost = async ( req, res ) => {
 
 const discotecasPut = async ( req, res ) => {
     
-    const { id } = req.params.id
+    const { id } = req.params
     const { ...resto } = req.body
 
     const discoteca = await Discoteca.findByIdAndUpdate( id, resto )

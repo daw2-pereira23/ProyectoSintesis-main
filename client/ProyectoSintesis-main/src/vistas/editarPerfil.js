@@ -2,9 +2,8 @@ import Swal from 'sweetalert2'
 import { interfaz } from './interfaz'
 
 export const editarPerfil = {
-  template: `
-  <div class="container justify-content-center mt-5">
-    <div class="card">
+  template: `<div class="container justify-content-center mt-5">
+    <div class="card" style="width: 13 rem;">
       <form class="p-3 mt-5" id="formEditarUsuario" >
         <div class="card-body">
           <h1 class="text-primary-emphasis text-center card-title">Editar usuario <span id="name"></span></h1>
@@ -22,11 +21,14 @@ export const editarPerfil = {
         </div>
       </form>
       <div class="p-3">
-          <button class="btn btn-success" id="guardarCambiosEditar">Actualizar</button>
-          <button class="btn btn-danger" id="cancelarCambios">Cancelar</button>
+          <button class="btn btn-success" id="guardarCambiosEditar">Actualizar <i class="bi bi-pencil-fill"></i></button>
+          <button class="btn btn-primary" id="cancelarCambios">Cancelar <i class="bi bi-arrow-return-left"></i></button>
       </div>
-    </div>
-  </div>`,
+      <div class="d-flex justify-content-end mb-4">
+        <button class="btn btn-danger">Eliminar <i class="bi bi-trash-fill"></i></button>
+      </div>
+  </div>
+</div>`,
   script: async(datosIntroducidos, id, name) => {
 
     document.querySelector('#name').innerHTML = name
@@ -62,6 +64,7 @@ export const editarPerfil = {
           `El usuario ${name} ha sido actualizado con éxito`,
           'success'
         ).then( () => {
+          location.reload();
           document.querySelector('main').innerHTML = interfaz.template
         })
       }

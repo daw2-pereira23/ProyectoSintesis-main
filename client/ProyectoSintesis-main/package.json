@@ -19,6 +19,7 @@
     "@googlemaps/js-api-loader": "^1.15.1",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
+    "js-cookie": "^3.0.5",
     "leaflet": "^1.9.3",
     "maplibre-gl": "^2.4.0",
     "particlesjs": "^2.2.3",
