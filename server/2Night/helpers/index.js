@@ -1,6 +1,6 @@
-const dbValidators = require('./db-validators');
+const emailExist = require('../helpers/db-validators.js');
 
 
 module.exports = {
-    ...dbValidators
+    ...emailExist
 }

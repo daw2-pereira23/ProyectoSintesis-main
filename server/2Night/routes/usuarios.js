@@ -1,11 +1,8 @@
 const { Router } = require("express");
 const { check } = require('express-validator');
 const { usuariosGet, usuariosGetDeletedUsers, usuariosPost, usuariosPut, usuariosDelete, login } = require("../controllers/usuarios");
-
-const {
-    validarCampos,
-    emailExiste
-} = require('../middlewares');
+const { validarCampos } = require('../middlewares/index.js');
+const { emailExist, specialCharacters } = require('../helpers/index.js');
 
 const router = Router()
 
@@ -14,10 +11,11 @@ router.get('/', usuariosGet)
 router.get('/deletedUsers', usuariosGetDeletedUsers)
 
 router.post('/create', [
-    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
-    check('correo', 'El correo no es válido').isEmail(),
-    check('correo').custom( emailExiste ),
-    check('rol', 'No es un rol válido').isIn(['ADMIN_ROLE','USER_ROLE']),
+    check('name', 'El nombre es obligatorio').not().isEmpty(),
+    check('name').custom(specialCharacters),
+    check('password', 'La constraseña es obligatoria').not().isEmpty(),
+    check('email', 'El correo no es válido').isEmail(),
+    check('email').custom(emailExist),
     validarCampos
 ], usuariosPost)
 

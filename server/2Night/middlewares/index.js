@@ -1,5 +1,5 @@
-const validaCampos = require('../middlewares/validar-campos');
+const validarCampos = require('../middlewares/validar-campos');
 
 module.exports = {
-    ...validaCampos
+    ...validarCampos
 }

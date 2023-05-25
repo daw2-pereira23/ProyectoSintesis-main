@@ -1,24 +1,30 @@
-const { Usuario } = require('../models');
+const { Usuario } = require('../models/usuario.js');
 
-const emailExiste = async( correo = '' ) => {
-
-    // Verificar si el correo existe
-    const existeEmail = await Usuario.findOne({ correo });
-    if ( existeEmail ) {
-        throw new Error(`El correo: ${ correo }, ya está registrado`);
+//TODO Verify if email exists
+const emailExist = async( email ) => {
+    try {
+        console.log("lo que entra" + email);
+        const userEmail = await Usuario.findOne({ email }); 
+        console.log("si existe" + userEmail);
+        if ( userEmail ) {
+            throw new Error(`El correo: ${ email } ya está registrado`);  
+        }
+    } catch (err) {
+        throw new Error(`${ err }`);
     }
 }
 
-const existeUsuarioPorId = async( id ) => {
+const specialCharacters = async(name) => {
 
-    // Verificar si el correo existe
-    const existeUsuario = await Usuario.findById(id);
-    if ( !existeUsuario ) {
-        throw new Error(`El usuario no existe`);
+    const nameRegex = /^[a-zA-Z0-9\s]+$/;
+  
+    // Check if the name matches the regular expression pattern
+    if (!nameRegex.test(name)) {
+        throw new Error(`Solo están permitidos carácteres de a-z, A-Z y 0-9`);  
     }
 }
 
 module.exports = {
-    emailExiste,
-    existeUsuarioPorId
+    emailExist,
+    specialCharacters
 }
