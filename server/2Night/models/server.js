@@ -9,7 +9,7 @@ class Server {
     this.port = process.env.PORT || 3000
 
     this.app.use(session({
-      secret: 'mi_secreto', // Cambia esto por una cadena de caracteres segura y aleatoria
+      secret: 'mi_secreto',
       resave: false,
       saveUninitialized: false
     }));
@@ -60,7 +60,5 @@ class Server {
   }
  
 }
-
-
 
 module.exports = Server

@@ -13,10 +13,25 @@ const DiscotecaSchema = Schema({
     unique: true
   },
 
+  description: {
+    type: String,
+    required: [true, 'La descripción es obligatoria'],
+  },
+
   address: {
     type: String,
     required: [true, 'La dirección es obligatoria'],
     unique: true
+  },
+
+  latitude: {
+    type: Number,
+    required: [true, 'La latitud es necesaria']
+  },
+
+  longitude: {
+    type: Number,
+    required: [true, 'La longitud es necesaria']
   },
 
   tags: {
@@ -25,7 +40,8 @@ const DiscotecaSchema = Schema({
   },
 
   img: {
-    type: String
+    type: String,
+    default: ""
   },
 
   state: {
