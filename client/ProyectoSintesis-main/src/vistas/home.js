@@ -59,6 +59,17 @@ export const home = {
                     <label class="form-label" for="form3Example4" >Contraseña</label>
                   </div>
     
+                  <!-- Checkbox -->
+                  <div class="form-check d-flex justify-content-center mb-4">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+                    <label class="form-check-label" for="form2Example33">
+                      No recuerdo mi contraseña
+                    </label>
+                  </div>
+    
+                  <!-- Submit button -->
+                 
+    
                   <!-- Register buttons -->
                   <div class="text-center d-flex justify-content-end">
                     <button class="btn btn-primary" id="registro">Registrarme</button> 
@@ -66,17 +77,6 @@ export const home = {
                 </form>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    `,
-  script: () => {
-
-    var urlEndpoint = 'http://localhost:8081/api/usuarios/create'
-    
-    document.querySelector('#registro').addEventListener('click', (event) => {
-      event.preventDefault()
       document.querySelector("#formulario").classList.add("was-validated")
       const estadoForm = document.querySelector("#formulario").checkValidity()
       console.log(estadoForm);
@@ -88,6 +88,17 @@ export const home = {
         let email = document.querySelector("#emailRegistro").value
         let name = document.querySelector("#nombreRegistro").value
       let datos= 
+    var urlEndpoint = 'http://localhost:8081/api/usuarios/create'
+    
+    document.querySelector('#registro').addEventListener('click', (event) => {
+      event.preventDefault()
+
+      let password = document.querySelector("#passwordRegistro").value
+      let email = document.querySelector("#emailRegistro").value
+      let name = document.querySelector("#nombreRegistro").value
+      let apellidos = document.querySelector("#apellidoRegistro").value
+  
+      let data= 
       {
         name: name,
         email: email,

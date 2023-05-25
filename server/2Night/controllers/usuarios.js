@@ -36,6 +36,18 @@ const usuariosGetDeletedUsers = async( req = request, res = response ) => {
     })
 }
 
+const usuariosGetDeletedUsers = async( req = request, res = response ) => {
+
+    const query = { state: false }
+
+    const [ usuarios ] = await Promise.all([
+        Usuario.find( query )])
+
+    res.json({
+        usuarios 
+    })
+}
+
 const usuariosPost = async ( req, res ) => {
 
     const { name, email, password, rol } = req.body

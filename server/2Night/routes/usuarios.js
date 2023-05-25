@@ -24,7 +24,7 @@ router.post('/login', [
 ], login)
 
 router.put('/update/:id', [
-    check('id', 'No es un ID válido').isMongoId(),
+    check('id', 'No es un ID v�lido').isMongoId(),
     validarCampos
 ], usuariosPut)
 

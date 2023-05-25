@@ -17,7 +17,7 @@ const emailExist = async( email ) => {
 const specialCharacters = async(name) => {
 
     const nameRegex = /^[a-zA-Z0-9\s]+$/;
-  
+
     // Check if the name matches the regular expression pattern
     if (!nameRegex.test(name)) {
         throw new Error(`Solo están permitidos carácteres de a-z, A-Z y 0-9`);  
