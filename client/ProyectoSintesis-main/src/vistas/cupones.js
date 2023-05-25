@@ -1,7 +1,7 @@
 
 export const cupones = {
   template: `
-  <div class="col-12 background-radial-gradient overflow-hidden vh-100">
+  <div class="col-12 background-radial-gradient overflow-hidden vh-100 justify-content-center">
   <style>
             
             
@@ -29,21 +29,19 @@ export const cupones = {
       backdrop-filter: saturate(200%) blur(25px);
   }
   </style>
-    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-      <h1 class="my-5 display-5 fw-bold ls-tight text-center" style="color: hsl(218, 81%, 95%)">
-      CUPONES <br/>
-      <span style="color: hsl(218, 81%, 75%)">Salimos <strong>Tonight ?</strong></span>
-      <o/h1>
-      <div class="d-flex flex-column text-center justify-content-center">
-        <div class="col-xs-12 col-6 text-center ">
-          1
-        </div>
-        <div class="col-6">
-          2
+  <h1 class="tituloCupon text-center">Cupones Disponibles</h1>
+  <p class="tituloCupon text-center">Selecciona el cupón que desees canjear:</p>
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <img class="card-img-top" src="https://via.placeholder.com/350x150" alt="Cupón 1">
+        <div class="card-body">
+          <h5 class="card-title">Cupón 1</h5>
+          <p class="card-text">Descripción del cupón 1.</p>
+          <a href="#" class="btn btn-primary">Canjear</a>
         </div>
       </div>
     </div>
-  </div>
     `,
   script: () => {
     console.log('Cupones')

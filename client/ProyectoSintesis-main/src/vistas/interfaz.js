@@ -33,7 +33,7 @@ export const interfaz = {
             <div class="container col-12 d-flex justify-content-center">
               <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
               Tu App para salir de fiesta <br />
-              <span style="color: hsl(218, 81%, 75%)">Salimos <strong>Tonight ?</strong></span>
+              <span style="color: hsl(218, 81%, 75%)">¿Salimos <strong>Tonight?</strong></span>
               <o/h1>
             </div>
           </div>

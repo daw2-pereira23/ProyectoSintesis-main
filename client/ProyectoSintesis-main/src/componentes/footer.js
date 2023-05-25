@@ -1,25 +1,27 @@
+import { admin } from '../vistas/admin'
 import { cupones } from '../vistas/cupones'
 import { descubrir } from '../vistas/descubrir'
+import { editarPerfil } from '../vistas/editarPerfil'
+import { login } from '../vistas/login'
 import { proximosEventos } from '../vistas/proximosEventos'
-import { user } from '../vistas/user'
 
 export const footer = {
   template: `
     <nav class="navbar d-flex justify-content-center align-items-center white-color">
-        <div class="mt-1 ">
-            <i class="fa-solid fa-magnifying-glass logos" id="descubrir"></i>
+        <div class="mt-1 " id="primerIcono">
+           
         </div>
-        <div class="mt-1 ps-5 logos">
-            <i class="fa-regular fa-user" id="user"></i>
+        <div class="mt-1 ps-5 logos" id="segundoIcono">
+           
         </div>
-        <div class="mt-1 ps-5">
-            <i class="fa-solid fa-ticket logos" id="cupones"></i>
+        <div class="mt-1 ps-5" id="tercerIcono">
+     
         </div>
-        <div class="mt-1 ps-5">
-            <i class="fa-solid fa-arrow-right logos" ></i>
+        <div class="mt-1 ps-5" id="cuartoIcono">
+         
         </div>
-        <div class="mt-1 ps-5">
-            <i class="fa-solid fa-calendar-days logos" id="proximosEventos"></i>
+        <div class="mt-1 ps-5" id="quintoIcono">
+            
         </div>
     </nav>
     `,
