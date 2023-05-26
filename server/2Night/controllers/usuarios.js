@@ -3,6 +3,9 @@ const Usuario = require("../models/usuario.js");
 const { genSaltSync, hashSync } = require("bcryptjs")
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const session = require("express-session");
+
+
 
 const usuariosGet = async( req = request, res = response ) => {
 
@@ -89,13 +92,21 @@ const login = async ( req, res ) => {
             return res.status(401).json({ 
                 message : 'Usuario o contraseña incorrectos'
             });            }
+        
+           
 
         const token = jwt.sign({ userId: user._id }, 'holiwis');
         
         const rol = user.role
         const name = user.name
         const id = user.id
-        res.json({ "Usuario logueado y rol: " : user, token, rol, name, id});
+        req.session.user = {
+            userId: user._id,
+            rol: user.role,
+            name: user.name
+          };
+        res.json({ "Usuario logueado y rol: " : user, token, rol, name, id, });
+        
     } catch (error) {
         console.error(error);
         res.status(500).send('Error al iniciar sesión');

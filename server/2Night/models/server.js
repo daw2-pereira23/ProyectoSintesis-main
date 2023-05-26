@@ -1,11 +1,18 @@
 const  express =  require('express')
 const { dbConnection } =  require('../database/config.js')
 const  cors  =  require('cors')
+const session = require('express-session');
 
 class Server {
   constructor () {
     this.app = express()
     this.port = process.env.PORT || 3000
+
+    this.app.use(session({
+      secret: 'mi_secreto', // Cambia esto por una cadena de caracteres segura y aleatoria
+      resave: false,
+      saveUninitialized: false
+    }));
 
     this.paths = {
       usuarios: '/api/usuarios' ,
@@ -16,6 +23,8 @@ class Server {
     this.conectarDB()
 
     this.middlewares()
+
+    
 
     this.routes()
   }
@@ -51,5 +60,7 @@ class Server {
   }
  
 }
+
+
 
 module.exports = Server
