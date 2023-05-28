@@ -1,6 +1,5 @@
 const { Router } = require("express")
 const { check } = require('express-validator')
-
 const { 
     usuariosGet, 
     usuariosGetDeletedUsers, 
@@ -8,11 +7,10 @@ const {
     usuariosPut, 
     usuariosDelete
 } = require("../controllers/usuarios")
-
 const {
     validarCampos,
     validarJWT,
-    esAdminRole,
+    esAdminRole
 } = require('../middlewares/index.js')
 
 const router = Router()

@@ -12,6 +12,11 @@ const NoticiasSchema = Schema({
     required: [true, 'La descripción es obligatoria']
   },
 
+  date : {
+    type: Date,
+    required: [true, 'La fecha es obligatoria']
+  },
+
   tags: {
     type: String
   },

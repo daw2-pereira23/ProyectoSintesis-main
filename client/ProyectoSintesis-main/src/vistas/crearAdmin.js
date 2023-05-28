@@ -32,7 +32,7 @@ export const crearAdmin = {
     </div>
     `,
     script:()=>{
-
+      const token = localStorage.getItem('token') 
         document.querySelector('#seleccionNoticias').addEventListener("click", ()=>{
             const panel = document.querySelector('#botones');
             while (panel.firstChild) {
@@ -140,7 +140,7 @@ export const crearAdmin = {
               var urlEndpoint = 'http://localhost:8081/api/noticias/create'
                 fetch( urlEndpoint, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type' : 'application/json', 'token' : token},
                     body: JSON.stringify( crearNoticia )
                   })
                   .then( resp => resp.json() )
@@ -177,7 +177,7 @@ export const crearAdmin = {
             var urlEndpoint = 'http://localhost:8081/api/usuarios/create'
             fetch( urlEndpoint, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type' : 'application/json', 'token' : token},
                 body: JSON.stringify( datos )
               })
               .then( resp => resp.json() )
@@ -349,7 +349,7 @@ export const crearAdmin = {
               var urlEndpoint = 'http://localhost:8081/api/discotecas/create'
             fetch( urlEndpoint, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type' : 'application/json', 'token' : token},
                 body: JSON.stringify( datos )
               })
               .then( resp => resp.json() )

@@ -225,7 +225,7 @@ export const admin = {
                 if (result.isConfirmed) {
                   const response = fetch(`http://localhost:8081/api/usuarios/delete/${id}`, {
                   method: 'DELETE',
-                  headers: { 'Content-Type': 'application/json' }
+                  headers: { 'Content-Type' : 'application/json', 'token' : token}
                   });
                   Swal.fire(
                     'Borrado!',
@@ -367,7 +367,7 @@ export const admin = {
                       }
                       var result =fetch( `http://localhost:8081/api/noticias /update/${id}`, {
                         method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type' : 'application/json', 'token' : token},
                         body: JSON.stringify( updateDiscoteca )
                         })
                         .then( resp => resp.json())
@@ -403,7 +403,7 @@ export const admin = {
                         if (result.isConfirmed) {
                           const response = fetch(`http://localhost:8081/api/noticias/delete/${id}`, {
                           method: 'DELETE',
-                          headers: { 'Content-Type': 'application/json' }
+                          headers: { 'Content-Type' : 'application/json', 'token' : token}
                           });
                           Swal.fire(
                             'Borrado!',
@@ -527,7 +527,7 @@ export const admin = {
                         if (result.isConfirmed) {
                           const response = fetch(`http://localhost:8081/api/discotecas/delete/${id}`, {
                           method: 'DELETE',
-                          headers: { 'Content-Type': 'application/json' }
+                          headers: { 'Content-Type' : 'application/json', 'token' : token}
                           });
                           Swal.fire(
                             'Borrado!',
@@ -560,7 +560,7 @@ export const admin = {
                         }
                         var result =fetch( `http://localhost:8081/api/discotecas/update/${id}`, {
                           method: 'PUT',
-                          headers: { 'Content-Type': 'application/json' },
+                          headers: { 'Content-Type' : 'application/json', 'token' : token},
                           body: JSON.stringify( updateDiscoteca )
                           })
                           .then( resp => resp.json())

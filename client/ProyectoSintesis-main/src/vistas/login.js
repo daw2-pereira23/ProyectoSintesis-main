@@ -111,7 +111,7 @@ script: () => {
         document.querySelector('#divErrores').innerHTML = errores
       
       } else {
-        console.log(data.token);
+        localStorage.setItem('token', data.token)
         const rol = data.usuario.role
         const id = data.usuario.id
         const name = data.usuario.name
