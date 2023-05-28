@@ -18,11 +18,16 @@
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.15.1",
     "@popperjs/core": "^2.11.6",
+    "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
+    "connect-mongo": "^5.0.0",
+    "express-session": "^1.17.3",
+    "js-cookie": "^3.0.5",
     "leaflet": "^1.9.3",
     "maplibre-gl": "^2.4.0",
+    "mongoose": "^7.2.0",
     "particlesjs": "^2.2.3",
-    "sweetalert2": "^11.7.3"
+    "sweetalert2": "^11.7.5"
   },
   "eslintConfig": {
     "extends": [

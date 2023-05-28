@@ -15,8 +15,8 @@ const discotecasGet = async( req = request, res = response ) => {
 
 const discotecasPost = async ( req, res ) => {
 
-    const { name, email, address, tags } = req.body
-    const discoteca = new Discoteca({ name, email, address, tags })
+    const { name, email, description, img, address, tags, longitude, latitude } = req.body
+    const discoteca = new Discoteca({ name, email, description, img, address, tags, longitude, latitude })
 
     //Guarda en DB
     await discoteca.save()
@@ -27,7 +27,7 @@ const discotecasPost = async ( req, res ) => {
 
 const discotecasPut = async ( req, res ) => {
     
-    const { id } = req.params.id
+    const { id } = req.params
     const { ...resto } = req.body
 
     const discoteca = await Discoteca.findByIdAndUpdate( id, resto )

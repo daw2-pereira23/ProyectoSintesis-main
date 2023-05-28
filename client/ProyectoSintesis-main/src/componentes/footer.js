@@ -1,15 +1,14 @@
 import { admin } from '../vistas/admin'
+import { crearAdmin } from '../vistas/crearAdmin'
 import { cupones } from '../vistas/cupones'
 import { descubrir } from '../vistas/descubrir'
 import { editarPerfil } from '../vistas/editarPerfil'
 import { login } from '../vistas/login'
-
 import { proximosEventos } from '../vistas/proximosEventos'
-import { user } from '../vistas/user'
 
 export const footer = {
   template: `
-    <nav class="navbar d-flex justify-content-center align-items-center white-color">
+    <nav class="navbar d-flex justify-content-center align-items-center white-color mt-auto">
         <div class="mt-1 " id="primerIcono">
            
         </div>
@@ -25,27 +24,27 @@ export const footer = {
         <div class="mt-1 ps-5" id="quintoIcono">
             
         </div>
+        <div class="mt-1 ps-5" id="sextoIcono">
+
+        </div>
     </nav>
     `,
-  script: (rol, usuario, email, id) => {
-    
-    console.log(rol);
-    console.log(usuario)
-    console.log(email)
-    console.log(id)
+  script: (rol, usuario, id, name) => {
     const primerIcono = ` <i class="fa-solid fa-magnifying-glass logos" id="descubrir"></i>`
     const segundoIcono = ` <i class="fa-regular fa-user" id="user"></i>`
     const tercerIcono = `<i class="fa-solid fa-ticket logos" id="cupones"></i>`
     const cuartoIcono = `   <i class="fa-solid fa-arrow-right logos" id="admin"></i>`
     const quintoIcono = `<i class="fa-solid fa-calendar-days logos" id="proximosEventos"></i>`
+    const sextoIcono = `<i class="fa-solid fa-plus logos" id="creacionAdmin"></i>`
     if((rol == "anonimo" ) || (rol == "USER_ROLE")){
       document.querySelector('#primerIcono').innerHTML = primerIcono
       document.querySelector('#segundoIcono').innerHTML = segundoIcono
       document.querySelector('#tercerIcono').innerHTML = tercerIcono
-    
       document.querySelector('#quintoIcono').innerHTML = quintoIcono
       const sinAdmin = document.querySelector('#cuartoIcono')
+      const sinAdmin2 = document.querySelector("#sextoIcono")
       sinAdmin.remove()
+      sinAdmin2.remove()
 
     } else if(rol == "ADMIN_ROLE"){
       document.querySelector('#primerIcono').innerHTML = primerIcono
@@ -53,9 +52,17 @@ export const footer = {
       document.querySelector('#tercerIcono').innerHTML = tercerIcono
       document.querySelector('#cuartoIcono').innerHTML = cuartoIcono
       document.querySelector('#quintoIcono').innerHTML = quintoIcono
-      document.querySelector('#proximosEventos').addEventListener("click", ()=>{
+      document.querySelector('#sextoIcono').innerHTML = sextoIcono
+      document.querySelector('#sextoIcono').addEventListener("click", ()=>{
+        console.log("hola")
+        document.querySelector('main').innerHTML = crearAdmin.template
+        crearAdmin.script()
+      })
+      document.querySelector('#admin').addEventListener("click", ()=>{
       document.querySelector('main').innerHTML = admin.template
       admin.script()
+      
+
     })
 
       }
@@ -69,7 +76,7 @@ export const footer = {
           login.script()
         }else{
           document.querySelector('main').innerHTML = editarPerfil.template
-          editarPerfil.script(usuario, email, id)
+          editarPerfil.script(usuario, id, name)
         }
         
       })
@@ -77,8 +84,11 @@ export const footer = {
         document.querySelector('main').innerHTML = cupones.template
         cupones.script()
       })
-      document.querySelector('main').innerHTML = proximosEventos.template
-      proximosEventos.script()
+      document.querySelector('#proximosEventos').addEventListener("click", ()=>{
+        document.querySelector('main').innerHTML = proximosEventos.template
+        proximosEventos.script()
+      })
+      
 
     
   }

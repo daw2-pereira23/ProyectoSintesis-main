@@ -1,66 +1,103 @@
 
 export const interfaz = {
   template: `
-    <div class="col-12 background-radial-gradient overflow-hidden">
-    <style>
-        
-        
-    #radius-shape-1 {
-      height: 220px;
-      width: 220px;
-      top: -60px;
-      left: -130px;
-      background: radial-gradient(#44006b, #ad1fff);
-      overflow: hidden;
-    }
+<div class="col-12 ">
 
-    #radius-shape-2 {
-      border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
-      bottom: -60px;
-      right: -110px;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(#44006b, #ad1fff);
-      overflow: hidden;
-    }
+<div class="container-fluid text-center justify-content-center text-light">
+    <h1>Tu App Para Salir de fiesta</h1>
+    <div id="inyeccionDiscotecas" class=" row d-flex text-black align-items-center justify-content-center">
 
-    .bg-glass {
-      background-color: hsla(0, 0%, 100%, 0.9) !important;
-      backdrop-filter: saturate(200%) blur(25px);
-    }
-    </style>
-          <div class="container py-5 px-md-5 text-center text-lg-start my-5">
-            <div class="container col-12 d-flex justify-content-center">
-              <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-              Tu App para salir de fiesta <br />
-              <span style="color: hsl(218, 81%, 75%)">Salimos <strong>Tonight ?</strong></span>
-              <o/h1>
-            </div>
-          </div>
-        <div class="d-flex justify-content-center align-items-center ">
-          <div class="row">
-            <div class="card sm-p-2">
-              <img src="../imagenes/RazzMataz.jpg" alt="" class="card-img-top img-fluid pt-1">
-              <div class="card-body">
-                <h5 class="card-title">RazzMatazz</h5>
-                <p class="card-title">Aqui ira información sobre la discoteca</p>
-                <a href="https://www.salarazzmatazz.com" target="_blank">Más información</a>
-              </div>
-            </div>
-          </div>
-        </div>
-    
     </div>
+</div>
+  
+</div>
     `,
   script: () => {
-    document.querySelector('#masinformacion').addEventListener('click', () => {
-      const boton = document.querySelector('#masinformacion')
-      const p = document.createElement('p')
-      const enlace = `
-        <a href="https://www.salarazzmatazz.com" class="btn btn-primary white-color" id="masinformacion">Mas Informacion</a>
-      `
-      p.innerHTML = enlace
-      boton.innerHTML = enlace
+    document.querySelector('footer').classList.add('footer-interfaz')
+    fetch('http://localhost:8081/api/discotecas', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
     })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error: ' + response.status);
+      }
+      return response.json(); 
+    })
+    .then(data => {
+      const dataArray = Object.values(data);
+      for(let i = 0; i < dataArray[0].length; i++) {
+        const card = document.createElement('div')
+        card.classList.add('card')
+        card.classList.add('targetaInterfaz')
+        card.classList.add('ms-2')
+        
+        const imagenDiscoteca = document.createElement('img')
+        imagenDiscoteca.classList.add('card-img-top')
+        imagenDiscoteca.classList.add('img-fluid')
+        imagenDiscoteca.classList.add('imagenesInterfaz')
+        
+        imagenDiscoteca.src = data.discotecas[i].img
+        card.append(imagenDiscoteca)
+        const cardBody = document.createElement('div')
+        cardBody.classList.add('card-body')
+       
+        const h5 = document.createElement('h5')
+        h5.classList.add('card-title')
+        h5.innerHTML = data.discotecas[i].name
+        cardBody.append(h5)
+        const p = document.createElement('p')
+        p.classList.add('card-text')
+        p.innerHTML = data.discotecas[i].email
+        cardBody.append(p)
+        const tags = document.createElement('p')
+        tags.classList.add('card-text')
+        tags.innerHTML = data.discotecas[i].tags
+        cardBody.append(tags)
+
+
+       
+
+
+        card.append(cardBody)
+        
+        
+
+        document.querySelector('#inyeccionDiscotecas').append(card)
+        
+
+
+
+        
+      }
+      
+    })
+    .catch(error => {
+      console.error(error);
+    });
   }
 }
+/*<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+
+
+
+
+<h5>${data.discotecas[i].name}</h5>
+          <div>
+            <br />
+            <p>${data.discotecas[i].description}</p>
+            <img src="${data.discotecas[i].img}" style="width: 10rem;"></img>
+            <br />
+            <p>Información de la sala: <a href="${data.discotecas[i].email}">${data.discotecas[i].email}</a></p>
+            <hr />
+            <p>Tags: ${data.discotecas[i].tags}</p>
+          </div>
+*/
