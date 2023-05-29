@@ -14,7 +14,7 @@ export const interfaz = {
     `,
   script: () => {
     document.querySelector('footer').classList.add('footer-interfaz')
-    fetch('http://localhost:8081/api/discotecas', {
+    fetch('api-2night.up.railway.app/api/discotecas', {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })

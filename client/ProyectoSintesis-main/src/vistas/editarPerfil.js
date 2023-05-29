@@ -47,7 +47,7 @@ export const editarPerfil = {
       }
 
         
-      var result = await fetch( `http://localhost:8081/api/usuarios/update/${id}`, {
+      var result = await fetch( `api-2night.up.railway.app/api/usuarios/update/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify( updateUsuario )

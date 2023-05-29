@@ -17,7 +17,7 @@ import { home } from './vistas/home'
 document.querySelector('header').innerHTML = header.template
 document.querySelector('main').innerHTML = login.template
 document.querySelector('footer').innerHTML = footer.template
-await login.script()
+login.script()
 
 
 

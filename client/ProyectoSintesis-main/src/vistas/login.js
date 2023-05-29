@@ -83,7 +83,7 @@ script: () => {
        'password': password
     }
 
-    var result = await fetch( "http://localhost:8081/api/auth/login", {
+    var result = await fetch( "api-2night.up.railway.app/api/auth/login", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify( datosIntroducidos )

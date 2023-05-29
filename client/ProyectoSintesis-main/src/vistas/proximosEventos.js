@@ -22,7 +22,7 @@ export const proximosEventos = {
       `,
   script: () => {
   
-    fetch("http://localhost:8081/api/noticias", {
+    fetch("api-2night.up.railway.app/api/noticias", {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' }
               })

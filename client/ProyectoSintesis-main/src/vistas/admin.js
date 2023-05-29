@@ -173,7 +173,7 @@ export const admin = {
                 </th>`
     const token = localStorage.getItem('token')
 
-    fetch("http://localhost:8081/api/usuarios", {
+    fetch("api-2night.up.railway.app/api/usuarios", {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -243,7 +243,7 @@ export const admin = {
                 confirmButtonText: 'Si Borralo'
               }).then((result) => {
                 if (result.isConfirmed) {
-                  const response = fetch(`http://localhost:8081/api/usuarios/delete/${id}`, {
+                  const response = fetch(`api-2night.up.railway.app/api/usuarios/delete/${id}`, {
                   method: 'DELETE',
                   headers: { 'Content-Type' : 'application/json', 'token' : token}
                   });
@@ -277,7 +277,7 @@ export const admin = {
                       'email': newEmail,
                       'role': newRol
                     }
-                    var result =fetch( `http://localhost:8081/api/usuarios/update/${id}`, {
+                    var result =fetch( `api-2night.up.railway.app/api/usuarios/update/${id}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify( updateUsuario )
@@ -341,7 +341,7 @@ export const admin = {
                 acciones.innerHTML = `<button class="btn btn-sm btn-primary discotecas"><i class="fa-solid fa-champagne-glasses discotecas"></i></button><button class="btn btn-sm btn-primary noticias ms-5"><i class="bi bi-pencil-square noticias"></i></button>`
                 
                 encabezado.append(acciones)
-                fetch("http://localhost:8081/api/noticias", {
+                fetch("api-2night.up.railway.app/api/noticias", {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' }
               })
@@ -405,7 +405,7 @@ export const admin = {
                           'description': descripcionNoticia,
                           'tags':tagsNoticias
                         }
-                        var result =fetch( `http://localhost:8081/api/noticias/update/${id}`, {
+                        var result =fetch( `api-2night.up.railway.app/api/noticias/update/${id}`, {
                           method: 'PUT',
                           headers: { 'Content-Type' : 'application/json', 'token' : token},
                           body: JSON.stringify( updateNoticia )
@@ -455,7 +455,7 @@ export const admin = {
                         confirmButtonText: 'Si Borrala'
                       }).then((result) => {
                         if (result.isConfirmed) {
-                          const response = fetch(`http://localhost:8081/api/noticias/delete/${id}`, {
+                          const response = fetch(`api-2night.up.railway.app/api/noticias/delete/${id}`, {
                           method: 'DELETE',
                           headers: { 'Content-Type' : 'application/json', 'token' : token}
                           });
@@ -512,7 +512,7 @@ export const admin = {
                 const acciones = document.createElement('th')
                 acciones.innerHTML = '<button class="btn btn-sm btn-primary usuarios"><i class="fa-solid fa-solid fa-newspaper usuarios"></i></button><button class="btn btn-sm btn-primary noticias ms-5"><i class="bi bi-pencil-square noticias"></i></button>`'
                 encabezado.append(acciones)
-                fetch('http://localhost:8081/api/discotecas', {
+                fetch('api-2night.up.railway.app/api/discotecas', {
                   method: 'GET',
                   headers: { 'Content-Type': 'application/json' },
                 })
@@ -580,7 +580,7 @@ export const admin = {
                         confirmButtonText: 'Si Borralo'
                       }).then((result) => {
                         if (result.isConfirmed) {
-                          const response = fetch(`http://localhost:8081/api/discotecas/delete/${id}`, {
+                          const response = fetch(`api-2night.up.railway.app/api/discotecas/delete/${id}`, {
                           method: 'DELETE',
                           headers: { 'Content-Type' : 'application/json', 'token' : token}
                           });
@@ -624,7 +624,7 @@ export const admin = {
                                 
                           }
                   
-                        fetch( `http://localhost:8081/api/discotecas/update/${id}`, {
+                        fetch( `api-2night.up.railway.app/api/discotecas/update/${id}`, {
                           method: 'PUT',
                           headers: { 'Content-Type' : 'application/json', 'token' : token},
                           body: JSON.stringify( updateDiscoteca )

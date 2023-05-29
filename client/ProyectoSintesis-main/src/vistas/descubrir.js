@@ -23,7 +23,7 @@ export const descubrir = {
 
     }).addTo(map)
 
-    fetch('http://localhost:8081/api/discotecas', {
+    fetch('api-2night.up.railway.app/api/discotecas', {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })

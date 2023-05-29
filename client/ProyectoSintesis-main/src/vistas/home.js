@@ -73,7 +73,7 @@ export const home = {
     `,
   script: () => {
 
-    var urlEndpoint = 'http://localhost:8081/api/usuarios/create'
+    var urlEndpoint = 'api-2night.up.railway.app/api/usuarios/create'
     
     document.querySelector('#registro').addEventListener('click', (event) => {
       event.preventDefault()

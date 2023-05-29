@@ -159,7 +159,7 @@ export const crearAdmin = {
                   'date':date
                 }
                 
-              var urlEndpoint = 'http://localhost:8081/api/noticias/create'
+              var urlEndpoint = 'api-2night.up.railway.app/api/noticias/create'
                 fetch( urlEndpoint, {
            
                     method: 'POST',
@@ -203,7 +203,7 @@ export const crearAdmin = {
                 email: email,
                 password: password,
             }
-            var urlEndpoint = 'http://localhost:8081/api/usuarios/create'
+            var urlEndpoint = 'api-2night.up.railway.app/api/usuarios/create'
             fetch( urlEndpoint, {
                 method: 'POST',
                 headers: { 'Content-Type' : 'application/json', 'token' : token},
@@ -402,7 +402,7 @@ export const crearAdmin = {
 
               }
               console.log(descripcion)
-              var urlEndpoint = 'http://localhost:8081/api/discotecas/create'
+              var urlEndpoint = 'api-2night.up.railway.app/api/discotecas/create'
             fetch( urlEndpoint, {
                 method: 'POST',
                 headers: { 'Content-Type' : 'application/json', 'token' : token},
