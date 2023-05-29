@@ -96,11 +96,13 @@ export const crearAdmin = {
             labelFecha.classList.add('form-label')
             labelFecha.classList.add('mt-3')
             labelFecha.innerHTML = `Fecha`
+
             div.append(labelFecha)
             const inputFecha = document.createElement('input')
             inputFecha.classList.add('form-control')
             inputFecha.classList.add('text-dark')
             inputFecha.id = 'fecha'
+         
             div.append(inputFecha)
           
             formularios.append(div)
@@ -147,16 +149,19 @@ export const crearAdmin = {
               const tituloNoticia = document.querySelector('#tituloNoticia').value
               const descripcionNoticia = document.querySelector('#descripcionNoticias').value
               const tagsNoticias = document.querySelector('#tagsNoticias').value
+              const date =  document.querySelector('#fecha').value
     
     
                 const crearNoticia = {
                   'title': tituloNoticia,
                   'description': descripcionNoticia,
-                  'tags':tagsNoticias
+                  'tags':tagsNoticias,
+                  'date':date
                 }
-              
+                
               var urlEndpoint = 'http://localhost:8081/api/noticias/create'
                 fetch( urlEndpoint, {
+           
                     method: 'POST',
                     headers: { 'Content-Type' : 'application/json', 'token' : token},
                     body: JSON.stringify( crearNoticia )
@@ -174,6 +179,7 @@ export const crearAdmin = {
                         'success'
                       ).then(() => {
                         document.querySelector('main').innerHTML = crearAdmin.template
+                        footer.script('ADMIN_ROLE')
                       })
                     }
                   })
@@ -217,6 +223,7 @@ export const crearAdmin = {
                     'success'
                   ).then(() => {
                     document.querySelector('main').innerHTML = crearAdmin.template
+                    crearAdmin.script()
                   })
                 }
               })

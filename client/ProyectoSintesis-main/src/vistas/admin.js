@@ -127,7 +127,7 @@ export const admin = {
       </div>
     </div>
    >
-    <div class="col-12 d-flex vh-100 justify-content-center align-items-center ps-5 pe-5">
+    <div class="col-12 d-flex vh-75 justify-content-center align-items-center ps-5 pe-5 formularioAdmin">
    
 
        <table class="table bg-light col-12">
@@ -147,7 +147,9 @@ export const admin = {
     
     `,
   script: async() => {
+
     document.addEventListener("click", (event)=>{
+      document.querySelector('footer').classList.add('footer-admin')
       if(event.target.classList.contains('usuarios')){
         const tbody = document.querySelector('tbody');
                 while (tbody.firstChild) {
@@ -254,7 +256,7 @@ export const admin = {
                   while (tbody.firstChild) {
                     tbody.removeChild(tbody.firstChild);
                   }
-                
+
                      admin.script()
                 }
               })

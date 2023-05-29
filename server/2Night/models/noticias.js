@@ -13,7 +13,7 @@ const NoticiasSchema = Schema({
   },
 
   date : {
-    type: Date,
+    type: String,
     required: [true, 'La fecha es obligatoria']
   },
 
