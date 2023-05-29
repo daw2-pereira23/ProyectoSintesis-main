@@ -113,7 +113,7 @@ script: () => {
       } else {
         localStorage.setItem('token', data.token)
         const rol = data.usuario.role
-        const id = data.usuario.id
+        const id = data.usuario.uid
         const name = data.usuario.name
         document.querySelector('main').innerHTML = interfaz.template
         interfaz.script()

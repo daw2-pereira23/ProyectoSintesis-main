@@ -24,9 +24,6 @@ export const editarPerfil = {
           <button class="btn btn-success" id="guardarCambiosEditar">Actualizar <i class="bi bi-pencil-fill"></i></button>
           <button class="btn btn-primary" id="cancelarCambios">Cancelar <i class="bi bi-arrow-return-left"></i></button>
       </div>
-      <div class="d-flex justify-content-end mb-4">
-        <button class="btn btn-danger">Eliminar <i class="bi bi-trash-fill"></i></button>
-      </div>
   </div>
 </div>`,
   script: (datosIntroducidos, id, name) => {
@@ -49,7 +46,6 @@ export const editarPerfil = {
         'email': newEmail
       }
 
-      console.log("test" + updateUsuario, id)
         
       var result = await fetch( `http://localhost:8081/api/usuarios/update/${id}`, {
         method: 'PUT',
@@ -59,7 +55,6 @@ export const editarPerfil = {
         .then( resp => resp.json())
         .then( data => {
           if(undefined == data) {
-            console.log("algo ha fallado");
           } else {
             Swal.fire(
               'Usuario actualizado',
