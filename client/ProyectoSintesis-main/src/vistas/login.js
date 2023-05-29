@@ -51,13 +51,6 @@ export const login = {
                   <input type="password" class="form-control" id="passLogin"/>
                 </div>
                 <div id="passErrors"></div>
-                <!-- Checkbox -->
-                <div class="form-check d-flex justify-content-center mb-4">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                  <label class="form-check-label" for="form2Example33">
-                    Recordar mi contraseña
-                  </label>
-                </div>
   
                 <!-- Submit button -->
                <br>
