@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2/dist/sweetalert2.js'
+import Swal, { swal } from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
 import { editarPerfil } from './editarPerfil'
 
@@ -16,24 +16,25 @@ export const admin = {
           <div class="modal-body">
           <div class="container justify-content-center mt-5">
           <div class="card" style="width: 13 rem;">
-            <form class="p-3 mt-5" id="formEditarUsuario" >
+            <form class="p-3 mt-5" id="formEditarUsuario" novalidate>
               <div class="card-body">
                 <h1 class="text-primary-emphasis text-center card-title">Editar usuario <span id="name"></span></h1>
                 <hr />
                 <div class="mt-3 card-body">
                   <label class="mt-3 form-label" for="nick">Nombre</label>
-                  <input id="nombre4" type="text" class="form-control text-dark" require/>
+                  <input id="nombre4" type="text" class="form-control text-dark" require pattern="^[^<>]*$"/>
       
                   <label class="mt-3 form-label" for="apellidos">Email</label>
-                  <input id="email4" type="email" class="form-control" require/>
+                  <input id="email4" type="email" class="form-control" require pattern="^[^<>]*$"/>
       
                   <label class="mt-3 form-label" for="contraseña">Rol</label>
-                  <input id="rol4" type="text" class="form-control" require/>
+                  <input id="rol4" type="text" class="form-control" require pattern="^[^<>]*$"/>
                 </div>
               </div>
             </form>
             <div class="p-3">
                 <button class="btn btn-success" id="guardarCambiosEditarAdmin">Crear<i class="bi bi-pencil-fill"></i></button>
+                <button class="btn btn-danger" id="eliminarUsuario">Eliminar<i class="fa-solid fa-trash"></i></button>
             </div>
         </div>
       </div>
@@ -54,27 +55,28 @@ export const admin = {
           <div class="modal-body">
           <div class="container justify-content-center mt-5">
           <div class="card" style="width: 13 rem;">
-            <form class="p-3 mt-5" id="formEditarUsuario" >
+            <form class="p-3 mt-5" id="formEditarDiscoteca" novalidate>
               <div class="card-body">
                 <h1 class="text-primary-emphasis text-center card-title">Editar Discoteca <span id="name"></span></h1>
                 <hr />
                 <div class="mt-3 card-body">
                   <label class="mt-3 form-label" for="nick">Nombre</label>
-                  <input id="nombreDiscoteca" type="text" class="form-control text-dark" require/>
+                  <input id="nombreDiscoteca" type="text" class="form-control text-dark" required pattern="^[^<>]*$"/>
 
                   <label class="mt-3 form-label" for="contraseña">Descripcion</label>
-                  <input id="descripcion" type="text" class="form-control" require/>
+                  <input id="descripcion" type="text" class="form-control" required pattern="^[^<>]*$"/>
       
                   <label class="mt-3 form-label" for="apellidos">Email</label>
-                  <input id="emailDiscoteca" type="email" class="form-control" require/>
+                  <input id="emailDiscoteca" type="email" class="form-control" required pattern="^[^<>]*$"/>
       
                   <label class="mt-3 form-label" for="contraseña">Tags</label>
-                  <input id="tags" type="text" class="form-control" require/>
+                  <input id="tags" type="text" class="form-control" required pattern="^[^<>]*$"/>
                 </div>
               </div>
             </form>
             <div class="p-3">
                 <button class="btn btn-success" id="guardarCambiosDiscoteca">Crear<i class="bi bi-pencil-fill"></i></button>
+                <button class="btn btn-danger" id="eliminarDiscoteca">Eliminar<i class="fa-solid fa-trash"></i></button>
             </div>
         </div>
       </div>
@@ -95,25 +97,26 @@ export const admin = {
           <div class="modal-body">
           <div class="container justify-content-center mt-5">
           <div class="card" style="width: 13 rem;">
-            <form class="p-3 mt-5" id="formEditarUsuario" >
+            <form class="p-3 mt-5" id="formEditarNoticia" novalidate>
               <div class="card-body">
                 <h1 class="text-primary-emphasis text-center card-title">Editar Noticia <span id="name"></span></h1>
                 <hr />
                 <div class="mt-3 card-body">
                   <label class="mt-3 form-label" for="nick">Titulo</label>
-                  <input id="tituloNoticia" type="text" class="form-control text-dark"  require/>
+                  <input id="tituloNoticia" type="text" class="form-control text-dark"  require pattern="^[^<>]*$"/>
 
                   <label class="mt-3 form-label" for="contraseña">Descripcion</label>
-                  <input id="descripcionNoticia" type="text" class="form-control" require/>
+                  <input id="descripcionNoticia" type="text" class="form-control" require pattern="^[^<>]*$"/>
       
                   <label class="mt-3 form-label" for="apellidos">Email</label>
-                  <input id="tagsNoticia" type="email" class="form-control" require/>
+                  <input id="tagsNoticia" type="email" class="form-control" require pattern="^[^<>]*$"/>
   
                 </div>
               </div>
             </form>
             <div class="p-3">
                 <button class="btn btn-success" id="guardarCambiosNoticia">Crear<i class="bi bi-pencil-fill"></i></button>
+                <button class="btn btn-danger" id="eliminarNoticias">Eliminar<i class="fa-solid fa-trash"></i></button>
                
             </div>
         </div>
@@ -123,19 +126,13 @@ export const admin = {
         </div>
       </div>
     </div>
-    
-    <div class="col-12 background-radial-gradient overflow-hidden vh-100 d-flex justify-content-center align-items-center ps-5 pe-5">
-      
+   >
+    <div class="col-12 d-flex vh-100 justify-content-center align-items-center ps-5 pe-5">
+   
 
        <table class="table bg-light col-12">
         <thead>
             <tr id="encabezado">
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Email</th>
-                <th scope="col">Rol</th>
-                <th scope="col">Edicion</th>
-                <th scope="col">Cambiar CRUD</th>
                 
             </tr>
         </thead>
@@ -147,8 +144,32 @@ export const admin = {
        
     </div>
     
+    
     `,
   script: async() => {
+    document.addEventListener("click", (event)=>{
+      if(event.target.classList.contains('usuarios')){
+        const tbody = document.querySelector('tbody');
+                while (tbody.firstChild) {
+                  tbody.removeChild(tbody.firstChild);
+                  
+                }
+                const encabezado = document.querySelector('#encabezado');
+                while(encabezado.firstChild){
+                  encabezado.removeChild(encabezado.firstChild)
+                }
+        admin.script()
+      }
+    })
+    document.querySelector('#encabezado').innerHTML = `<th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Email</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Edicion</th>
+                <th scope="col">
+                <button class="btn btn-sm btn-primary discotecas"><i class="fa-solid fa-champagne-glasses discotecas"></i></button><button class="btn btn-sm btn-primary noticias ms-5"><i class="bi bi-pencil-square noticias"></i></button>
+                </th>`
+    const token = localStorage.getItem('token')
 
     fetch("http://localhost:8081/api/usuarios", {
       method: 'GET',
@@ -185,10 +206,7 @@ export const admin = {
           
           editaTabla.classList.add('editar');
           row.append(editaTabla);
-          const opcion = document.createElement('td')
-          opcion.classList.add('discotecas')
-          opcion.innerHTML = `<button class="btn btn-sm btn-primary discotecas"><i class="bi bi-pencil-square discotecas"></i></button><button class="btn btn-sm btn-primary noticias ms-5"><i class="bi bi-pencil-square noticias"></i></button>`;
-          row.append(opcion)
+          
           
 
 
@@ -201,7 +219,7 @@ export const admin = {
             const id = event.target.dataset.id;
             // Realizar la lógica necesaria para el evento
             console.log(`Clic en el elemento con data-id: ${id}`);
-
+            
 
             const fila = event.target.closest('tr')
             const nombre = fila.querySelector('.nombre').textContent
@@ -243,37 +261,45 @@ export const admin = {
             })
             //Funcion editar Usuarios
             document.querySelector("#guardarCambiosEditarAdmin").addEventListener("click", ()=>{
-              console.log("Debntro de la funcion")
-                var newName = document.querySelector("#nombre4").value
-                var newEmail = document.querySelector("#email4").value
-                var newRol = document.querySelector("#rol4").value
+                document.querySelector('#formEditarUsuario').classList.add('was-validated')
+                const estadoForm = document.querySelector('#formEditarUsuario').checkValidity()
+                console.log(estadoForm)
+                  if(estadoForm == true){
+                
+                    var newName = document.querySelector("#nombre4").value
+                    var newEmail = document.querySelector("#email4").value
+                    var newRol = document.querySelector("#rol4").value
 
-                const updateUsuario = {
-                  'name': newName,
-                  'email': newEmail,
-                  'role': newRol
-                }
-                var result =fetch( `http://localhost:8081/api/usuarios/update/${id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify( updateUsuario )
-                })
-                .then( resp => resp.json())
-                .then( data => {
-                  if(undefined == data) {
-                    console.log("algo ha fallado");
-                  } else {
-                    Swal.fire(
-                      'Usuario actualizado',
-                      `El usuario ${newName} ha sido actualizado con éxito`,
-                      'success'
-                    ).then( () => {
-                      document.querySelector('main').innerHTML = interfaz.template
+                    const updateUsuario = {
+                      'name': newName,
+                      'email': newEmail,
+                      'role': newRol
+                    }
+                    var result =fetch( `http://localhost:8081/api/usuarios/update/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify( updateUsuario )
                     })
+                    .then( resp => resp.json())
+                    .then( data => {
+                      if(undefined == data) {
+                        console.log("algo ha fallado");
+                      } else {
+                        Swal.fire(
+                          'Usuario actualizado',
+                          `El usuario ${newName} ha sido actualizado con éxito`,
+                          'success'
+                        ).then( () => {
+                          document.querySelector('main').innerHTML = interfaz.template
+                        })
+                      }
+                    })
+                    .catch( console.log )
+                  }
+                  if(estadoForm == false){
+                    Swal.fire("Revisa Bien Los Campos")
                   }
                 })
-                .catch( console.log )
-                    })
             
             
                 }
@@ -310,7 +336,8 @@ export const admin = {
                 tags.innerHTML = 'Tags'
                 encabezado.append(tags)
                 const acciones = document.createElement('th')
-                acciones.innerHTML = 'Acciones'
+                acciones.innerHTML = `<button class="btn btn-sm btn-primary discotecas"><i class="fa-solid fa-champagne-glasses discotecas"></i></button><button class="btn btn-sm btn-primary noticias ms-5"><i class="bi bi-pencil-square noticias"></i></button>`
+                
                 encabezado.append(acciones)
                 fetch("http://localhost:8081/api/noticias", {
                 method: 'GET',
@@ -354,37 +381,62 @@ export const admin = {
                   if(event.target.classList.contains('edicionNoticia')){
                     const id = event.target.dataset.id;
                     console.log(id)
-
+                    
+                    const fila = event.target.closest('tr')
+                    const nombre = fila.querySelector('.nombreNoticia').textContent
+                    const descripcion = fila.querySelector('.descripcion').textContent
+                    const tags = fila.querySelector('.tags').textContent
+                    document.querySelector('#tituloNoticia').value = nombre
+                    document.querySelector('#descripcionNoticia').value = descripcion
+                    document.querySelector('#tagsNoticia').value = tags
                     document.querySelector('#guardarCambiosNoticia').addEventListener("click", ()=>{
-                      const tituloNoticia = document.querySelector('#tituloNoticia').value
-                      const descripcionNoticia = document.querySelector('#descripcionNoticias').value
-                      const tagsNoticias = document.querySelector('#tagsNoticia').value
-                      
-                      const updateNoticia = {
-                        'title': tituloNoticia,
-                        'description': descripcionNoticia,
-                        'tags':tagsNoticias
+
+                      document.querySelector('#formEditarNoticia').classList.add('was-validated')
+                      const estadoForm = document.querySelector('#formEditarNoticia').checkValidity()
+                      if(estadoForm == true){
+                        const tituloNoticia = document.querySelector('#tituloNoticia').value
+                        const descripcionNoticia = document.querySelector('#descripcionNoticia').value
+                        const tagsNoticias = document.querySelector('#tagsNoticia').value
+                        
+                        const updateNoticia = {
+                          'title': tituloNoticia,
+                          'description': descripcionNoticia,
+                          'tags':tagsNoticias
+                        }
+                        var result =fetch( `http://localhost:8081/api/noticias/update/${id}`, {
+                          method: 'PUT',
+                          headers: { 'Content-Type' : 'application/json', 'token' : token},
+                          body: JSON.stringify( updateNoticia )
+                          })
+                          .then( resp => resp.json())
+                          .then( data => {
+                            if(undefined == data) {
+                              console.log("algo ha fallado");
+                            } else {
+                              Swal.fire(
+                                'Noticia actualizada',
+                                `La Noticia ${tituloNoticia} ha sido actualizada con éxito`,
+                                'success'
+                              ).then( () => {
+                                const tbody = document.querySelector('tbody');
+                                const encabezado = document.querySelector('#encabezado');
+                                while(encabezado.firstChild){
+                                  encabezado.removeChild(encabezado.firstChild)
+                                }
+                                while (tbody.firstChild) {
+                                  tbody.removeChild(tbody.firstChild);
+                                }
+                                admin.script()
+                          
+                              })
+                            }
+                          })
+                          .catch( console.log )
                       }
-                      var result =fetch( `http://localhost:8081/api/noticias /update/${id}`, {
-                        method: 'PUT',
-                        headers: { 'Content-Type' : 'application/json', 'token' : token},
-                        body: JSON.stringify( updateDiscoteca )
-                        })
-                        .then( resp => resp.json())
-                        .then( data => {
-                          if(undefined == data) {
-                            console.log("algo ha fallado");
-                          } else {
-                            Swal.fire(
-                              'Discoteca actualizada',
-                              `La discoteca ${nombreDiscotecaEditar} ha sido actualizada con éxito`,
-                              'success'
-                            ).then( () => {
-                              admin.script()
-                            })
-                          }
-                        })
-                        .catch( console.log )
+                      if(estadoForm == false){
+                        swal.fire("Revisa Bien Los Campos")
+                      }
+                      
 
                     })
 
@@ -439,6 +491,7 @@ export const admin = {
                 while(encabezado.firstChild){
                   encabezado.removeChild(encabezado.firstChild)
                 }
+
                 const hashtag = document.createElement('th')
                 hashtag.innerHTML = '#'
                 encabezado.append(hashtag)
@@ -455,7 +508,7 @@ export const admin = {
                 tags.innerHTML = 'Tags'
                 encabezado.append(tags)
                 const acciones = document.createElement('th')
-                acciones.innerHTML = 'Acciones'
+                acciones.innerHTML = '<button class="btn btn-sm btn-primary usuarios"><i class="fa-solid fa-solid fa-newspaper usuarios"></i></button><button class="btn btn-sm btn-primary noticias ms-5"><i class="bi bi-pencil-square noticias"></i></button>`'
                 encabezado.append(acciones)
                 fetch('http://localhost:8081/api/discotecas', {
                   method: 'GET',
@@ -496,7 +549,7 @@ export const admin = {
                     row.append(tags)
                     const accion = document.createElement('th')
                     accion.classList.add('editarDiscotecas')
-                    accion.innerHTML = `<button class="btn btn-sm btn-primary edicionDiscoteca" data-toggle="modal" data-target="#exampleModalCenter2" data-id="${data.discotecas[i]._id}"><i class="bi bi-pencil-square edicionDiscoteca" data-id="${data.discotecas[i]._id}"></i></button></button><button class="btn btn-sm btn-primary noticias ms-5"><i class="bi bi-pencil-square noticias"></i></button>`
+                    accion.innerHTML = `<button class="btn btn-sm btn-primary edicionDiscoteca" data-toggle="modal" data-target="#exampleModalCenter2" data-id="${data.discotecas[i]._id}"><i class="bi bi-pencil-square edicionDiscoteca" data-id="${data.discotecas[i]._id}"></i></button>`
                     row.append(accion)
                     tbody.append(row)
 
@@ -534,31 +587,42 @@ export const admin = {
                             'La discoteca se a borrado correctamente',
                             'success'
                           )
-                          const tbody= document.querySelector('tbody')
-                          while (tbody.firstChild) {
-                            tbody.removeChild(tbody.firstChild);
-                          }
-                        
-                             admin.script()
+                          const tbody = document.querySelector('tbody');
+                              const encabezado = document.querySelector('#encabezado');
+                              while(encabezado.firstChild){
+                                encabezado.removeChild(encabezado.firstChild)
+                              }
+                              while (tbody.firstChild) {
+                                tbody.removeChild(tbody.firstChild);
+                                
+                              }
+                    
+                            
                         }
                       })
                     })
+                    
                     document.querySelector("#guardarCambiosDiscoteca").addEventListener("click", ()=>{
-                      
-                      const id = event.target.dataset.id;
-                      console.log("Discoteca a editar" + id)
-                      const nombreDiscotecaEditar =  document.querySelector('#nombreDiscoteca').value 
-                      const descripcionEditar = document.querySelector('#descripcion').value
-                      const emailDiscotecaEditar =document.querySelector("#emailDiscoteca").value 
-                      const tagsDiscotecaEditar = document.querySelector('#tags').value
-                        const updateDiscoteca = {
-                          'name': nombreDiscotecaEditar,
-                          'email': emailDiscotecaEditar,
-                          'descripcion': descripcionEditar,
-                          'tags':tagsDiscotecaEditar
-                              
-                        }
-                        var result =fetch( `http://localhost:8081/api/discotecas/update/${id}`, {
+                      document.querySelector('#formEditarDiscoteca').classList.add('was-validated')
+                      const estadoForm = document.querySelector('#formEditarDiscoteca').checkValidity()
+                
+                      if(estadoForm == true){
+                        console.log(estadoForm)
+                        const id = event.target.dataset.id;
+                        console.log("Discoteca a editar" + id)
+                        const nombreDiscotecaEditar =  document.querySelector('#nombreDiscoteca').value 
+                        const descripcionEditar = document.querySelector('#descripcion').value
+                        const emailDiscotecaEditar =document.querySelector("#emailDiscoteca").value 
+                        const tagsDiscotecaEditar = document.querySelector('#tags').value
+                          const updateDiscoteca = {
+                            'name': nombreDiscotecaEditar,
+                            'email': emailDiscotecaEditar,
+                            'descripcion': descripcionEditar,
+                            'tags':tagsDiscotecaEditar
+                                
+                          }
+                  
+                        fetch( `http://localhost:8081/api/discotecas/update/${id}`, {
                           method: 'PUT',
                           headers: { 'Content-Type' : 'application/json', 'token' : token},
                           body: JSON.stringify( updateDiscoteca )
@@ -568,16 +632,33 @@ export const admin = {
                             if(undefined == data) {
                               console.log("algo ha fallado");
                             } else {
+                              console.log(data)
                               Swal.fire(
                                 'Discoteca actualizada',
                                 `La discoteca ${nombreDiscotecaEditar} ha sido actualizada con éxito`,
                                 'success'
+                                
                               ).then( () => {
-                                admin.script()
+                                const tbody = document.querySelector('tbody');
+                              const encabezado = document.querySelector('#encabezado');
+                              while(encabezado.firstChild){
+                                encabezado.removeChild(encabezado.firstChild)
+                              }
+                              while (tbody.firstChild) {
+                                tbody.removeChild(tbody.firstChild);
+                                
+                              }
+                    
+                              admin.script()
                               })
                             }
                           })
                           .catch( console.log )
+                      }
+                      if(estadoForm == false){
+                        Swal.fire("Revisa Bien Los Datos")
+                      }
+                      
                     })
                   }
                 })

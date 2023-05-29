@@ -6,7 +6,7 @@ export const crearAdmin = {
     template:`
     <div class="container justify-content-center mt-5">
     <div class="card card-Editar" style="width: 13 rem;">
-      <form class="p-3 mt-5" id="formEditarUsuario" >
+      <form class="p-3 mt-5" id="formEditarUsuario" novalidate>
         <div class="card-body" id="formularios">
           <h1 class="text-primary-emphasis text-center card-title">Crear Usuarios <span id="name"></span></h1>
           <hr />
@@ -25,7 +25,7 @@ export const crearAdmin = {
       </form>
       <div class="p-3" id="botones">
           <button class="btn btn-success" id="crearUser">Actualizar<i class="bi bi-pencil-fill"></i></button>
-          <button class="btn btn-primary" id="seleccionNoticias">Noticias<i class="fa-solid fa-newspaper"></i></button>
+          <button class="btn btn-primary noticias" >Noticias<i class="fa-solid fa-newspaper"></i></button>
           <button class="btn btn-primary discotecas" >Discotecas<i class="fa-solid fa-champagne-glasses"></i></button>
       </div>
     </div>
@@ -33,7 +33,9 @@ export const crearAdmin = {
     `,
     script:()=>{
       const token = localStorage.getItem('token') 
-        document.querySelector('#seleccionNoticias').addEventListener("click", ()=>{
+
+        document.addEventListener("click", (event)=>{
+          if(event.target.classList.contains('noticias')){
             const panel = document.querySelector('#botones');
             while (panel.firstChild) {
               panel.removeChild(panel.firstChild);
@@ -62,6 +64,8 @@ export const crearAdmin = {
             input.classList.add('form-control')
             input.classList.add('text-dark')
             input.id = `tituloNoticia`
+      
+            input.setAttribute('pattern', "^[^<>]*$" )
             div.append(input)
             const labelDescription = document.createElement('label')
             labelDescription.classList.add('form-label')
@@ -73,6 +77,8 @@ export const crearAdmin = {
             inputDescription.classList.add('form-control')
             inputDescription.classList.add('text-dark')
             inputDescription.id = `descripcionNoticias`
+
+            inputDescription.setAttribute('pattern', "^[^<>]*$" )
             div.append(inputDescription)
             const labelTags = document.createElement('label')
             labelTags.classList.add('form-label')
@@ -83,7 +89,20 @@ export const crearAdmin = {
             inputTags.classList.add('form-control')
             inputTags.classList.add('text-dark')
             inputTags.id = `tagsNoticias`
+   
+            inputTags.setAttribute('pattern', "^[^<>]*$" )
             div.append(inputTags)
+            const labelFecha = document.createElement('label')
+            labelFecha.classList.add('form-label')
+            labelFecha.classList.add('mt-3')
+            labelFecha.innerHTML = `Fecha`
+            div.append(labelFecha)
+            const inputFecha = document.createElement('input')
+            inputFecha.classList.add('form-control')
+            inputFecha.classList.add('text-dark')
+            inputFecha.id = 'fecha'
+            div.append(inputFecha)
+          
             formularios.append(div)
             const actualizar = document.createElement('button')
             actualizar.classList.add('btn')
@@ -98,8 +117,9 @@ export const crearAdmin = {
             const usuarios = document.createElement('button')
             usuarios.classList.add('btn')
             usuarios.classList.add('btn-primary')
+            usuarios.classList.add('usuarios')
             usuarios.innerHTML = `Usuarios`
-            usuarios.id=`irUsuarios`
+           
             const usuariosI = document.createElement('i')
             usuariosI.classList.add("fa-solid")
             usuariosI.classList.add('fa-user')
@@ -118,11 +138,9 @@ export const crearAdmin = {
             discotecas.append(discotecasI)
             panel.append(discotecas)
 
-            document.querySelector('#irUsuarios').addEventListener("click", ()=>{
-              document.querySelector('main').innerHTML = crearAdmin.template
-              crearAdmin.script()
-            })
+            
 
+            
            
 
             document.querySelector('#crearNoticia').addEventListener("click", async()=>{
@@ -161,7 +179,12 @@ export const crearAdmin = {
                   })
                   .catch( console.log );
             })
+          }
         })
+
+
+            
+        
         
 
         document.querySelector("#crearUser").addEventListener("click", async()=>{
@@ -200,9 +223,9 @@ export const crearAdmin = {
               .catch( console.log );
               
         })
-      document.querySelector('#botones').addEventListener("click", ()=>{
+      document.addEventListener("click", (event)=>{
           if(event.target.classList.contains('discotecas')){
-            console.log("hola")
+            
             const formularios = document.querySelector('#formularios')
             const panel = document.querySelector("#botones")
             while (formularios.firstChild) {
@@ -306,12 +329,7 @@ export const crearAdmin = {
             inputImagen.id = `imagen`
             inputImagen.type = `text`
             div.append(inputImagen)
-            
-
-
-
-
-
+  
             formularios.append(div)
             const actualizar = document.createElement('button')
             actualizar.classList.add('btn')
@@ -323,6 +341,37 @@ export const crearAdmin = {
             simbolo.classList.add('bi-pencil-fill')
             actualizar.append(simbolo)
             panel.append(actualizar)
+
+            const usuarios = document.createElement('button')
+            usuarios.classList.add('btn')
+            usuarios.classList.add('btn-primary')
+            usuarios.classList.add('usuarios')
+            usuarios.innerHTML = `Usuarios`
+            
+            const usuariosI = document.createElement('i')
+            usuariosI.classList.add("fa-solid")
+            usuariosI.classList.add('fa-user')
+            usuarios.append(usuariosI)
+           
+            panel.append(usuarios)
+            
+
+            const noticias = document.createElement('button')
+            noticias.classList.add('btn')
+            noticias.classList.add('btn-primary')
+            noticias.classList.add('ps-2')
+            noticias.classList.add('noticias')
+            noticias.innerHTML = `Noticias`
+
+            panel.append(noticias)
+
+            const iNoticias = document.createElement('i')
+            iNoticias.classList.add("fa-solid")
+            iNoticias.classList.add('fa-newspaper')
+            iNoticias.classList.add('usuarios')
+  
+            noticias.append(iNoticias)
+
             
             document.querySelector('#crearDiscoteca').addEventListener("click", async()=>{
               const nombreDiscoteca = document.querySelector('#name').value
@@ -361,8 +410,8 @@ export const crearAdmin = {
                   footer.script(rol, datos.name, data._id, datos.email)
         
                   Swal.fire(
-                    'Usuario creado',
-                    `El usuario ${name} ha sido creado con éxito`,
+                    'Discoteca creadoa',
+                    `La discoteca ${nombreDiscoteca} ha sido creado con éxito`,
                     'success'
                   ).then(() => {
                     document.querySelector('main').innerHTML = crearAdmin.template
@@ -372,6 +421,15 @@ export const crearAdmin = {
               .catch( console.log );
             })
           }
+      })
+      document.addEventListener("click", (event)=>{
+          if(event.target.classList.contains('usuarios')){
+
+            document.querySelector('main').innerHTML = crearAdmin.template
+            crearAdmin.script()
+          }
+           
+          
       })
     }
 

@@ -67,6 +67,7 @@ export const editarPerfil = {
               'success'
             ).then( () => {
               document.querySelector('main').innerHTML = interfaz.template
+              interfaz.script()
             })
           }
         })

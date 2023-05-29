@@ -1,8 +1,9 @@
 import { admin } from '../vistas/admin'
 import { crearAdmin } from '../vistas/crearAdmin'
-import { cupones } from '../vistas/cupones'
+
 import { descubrir } from '../vistas/descubrir'
 import { editarPerfil } from '../vistas/editarPerfil'
+import { interfaz } from '../vistas/interfaz'
 import { login } from '../vistas/login'
 import { proximosEventos } from '../vistas/proximosEventos'
 
@@ -81,8 +82,8 @@ export const footer = {
         
       })
       document.querySelector('#cupones').addEventListener("click", ()=>{
-        document.querySelector('main').innerHTML = cupones.template
-        cupones.script()
+        document.querySelector('main').innerHTML = interfaz.template
+        interfaz.script()
       })
       document.querySelector('#proximosEventos').addEventListener("click", ()=>{
         document.querySelector('main').innerHTML = proximosEventos.template
