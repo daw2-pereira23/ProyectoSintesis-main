@@ -15,8 +15,8 @@ const noticiasGet = async( req = request, res = response ) => {
 
 const noticiasPost = async ( req, res ) => {
 
-    const { title, description, tags } = req.body
-    const noticias = new Noticias({ title, description, tags})
+    const { title, description, tags, date} = req.body
+    const noticias = new Noticias({ title, description, tags, date})
 
     //Guarda en DB
     await noticias.save()
