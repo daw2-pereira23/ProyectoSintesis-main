@@ -28,6 +28,10 @@ export const footer = {
         <div class="mt-1 ps-5" id="sextoIcono">
 
         </div>
+
+        <div class="mt-1 ps-5" id="logout">
+      
+        </div>
     </nav>
     `,
   script: (rol, usuario, id, name) => {
@@ -37,11 +41,13 @@ export const footer = {
     const cuartoIcono = `   <i class="fa-solid fa-arrow-right logos" id="admin"></i>`
     const quintoIcono = `<i class="fa-solid fa-calendar-days logos" id="proximosEventos"></i>`
     const sextoIcono = `<i class="fa-solid fa-plus logos" id="creacionAdmin"></i>`
+    const logout = `<button class="btn btn-primary" id="logout">logout</button>`
     if((rol == "anonimo" ) || (rol == "USER_ROLE")){
       document.querySelector('#primerIcono').innerHTML = primerIcono
       document.querySelector('#segundoIcono').innerHTML = segundoIcono
       document.querySelector('#tercerIcono').innerHTML = tercerIcono
       document.querySelector('#quintoIcono').innerHTML = quintoIcono
+      document.querySelector('#logout').innerHTML = logout
       const sinAdmin = document.querySelector('#cuartoIcono')
       const sinAdmin2 = document.querySelector("#sextoIcono")
       sinAdmin.remove()
@@ -54,6 +60,8 @@ export const footer = {
       document.querySelector('#cuartoIcono').innerHTML = cuartoIcono
       document.querySelector('#quintoIcono').innerHTML = quintoIcono
       document.querySelector('#sextoIcono').innerHTML = sextoIcono
+      document.querySelector('#logout').innerHTML = logout
+
       document.querySelector('#sextoIcono').addEventListener("click", ()=>{
         console.log("hola")
         document.querySelector('main').innerHTML = crearAdmin.template
@@ -65,7 +73,6 @@ export const footer = {
       
 
     })
-
       }
       document.querySelector('#descubrir').addEventListener("click", ()=>{
         document.querySelector('main').innerHTML = descubrir.template
@@ -90,7 +97,9 @@ export const footer = {
         proximosEventos.script()
       })
       
-
-    
+      document.querySelector('#logout').addEventListener("click", ()=>{
+        localStorage.removeItem('token')
+        document.querySelector('main').innerHTML = login.template
+      })
   }
 }

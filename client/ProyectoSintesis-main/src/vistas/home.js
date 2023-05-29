@@ -113,6 +113,7 @@ export const home = {
             'success'
           ).then(() => {
             document.querySelector('main').innerHTML = interfaz.template
+            interfaz.script()
           })
         }
       })
